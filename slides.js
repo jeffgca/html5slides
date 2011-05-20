@@ -1,15 +1,16 @@
 /*
-  Google I/O 2011 HTML slides template
+  Google HTML5 slides template
 
   Authors: Luke Mahé (code)
            Marcin Wichary (code and design)
+           
            Dominic Mazzoni (browser compatibility)
            Charles Chen (ChromeVox support)
 
-  URL: http://code.google.com/p/io-2011-slides/
+  URL: http://code.google.com/p/html5slides/
 */
 
-var PERMANENT_URL_PREFIX = 'http://io-2011-slides.googlecode.com/svn/trunk/';
+var PERMANENT_URL_PREFIX = 'http://html5slides.googlecode.com/svn/trunk/';
 
 var SLIDE_CLASSES = ['far-past', 'past', 'current', 'next', 'far-next'];
 
