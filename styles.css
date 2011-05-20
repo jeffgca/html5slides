@@ -148,7 +148,7 @@ body {
 
 /* Slide styles */
 
-.slides-template-default article.biglogo {
+.slides.template-default article.biglogo {
   background: white url(images/google-logo.png) 50% 50% no-repeat;
 
   background-size: 600px;  
