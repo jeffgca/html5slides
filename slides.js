@@ -3,7 +3,7 @@
 
   Authors: Luke Mahé (code)
            Marcin Wichary (code and design)
-           
+
            Dominic Mazzoni (browser compatibility)
            Charles Chen (ChromeVox support)
 
@@ -601,7 +601,33 @@ function handleDomLoaded() {
 function initialize() {
   getCurSlideFromHash();
 
-  document.addEventListener('DOMContentLoaded', handleDomLoaded, false);
+  if (window['_DEBUG']) {
+    PERMANENT_URL_PREFIX = '../';
+  }
+
+  if (window['_DCL']) {
+    handleDomLoaded();
+  } else {
+    document.addEventListener('DOMContentLoaded', handleDomLoaded, false);
+  }
 }
 
-initialize();
+// If ?debug exists then load the script relative instead of absolute
+if (!window['_DEBUG'] && document.location.href.indexOf('?debug') !== -1) {
+  document.addEventListener('DOMContentLoaded', function() {
+    // Avoid missing the DomContentLoaded event
+    window['_DCL'] = true
+  }, false);
+
+  window['_DEBUG'] = true;
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = '../slides.js';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(script, s);
+
+  // Remove this script
+  s.parentNode.removeChild(s);
+} else {
+  initialize();
+}
