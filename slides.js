@@ -584,6 +584,8 @@ function makeBuildLists() {
 function handleDomLoaded() {
   slideEls = document.querySelectorAll('section.slides > article');
 
+  setupFrames();
+
   addFontStyle();
   addGeneralStyle();
   addPrettify();
@@ -592,7 +594,6 @@ function handleDomLoaded() {
   updateSlides();
 
   setupInteraction();
-  setupFrames();
   makeBuildLists();
 
   document.body.classList.add('loaded');
