@@ -4,6 +4,16 @@
     <title>Presentation</title>
 
     <meta charset='utf-8'>
+    <style type="text/css">
+    
+    article {
+      padding-top: 40px;
+    }
+    h3 {
+      padding-top: 30px;
+    }
+    
+    </style>
     <script src="slides.js"></script>
   </head>
     <body style='display: none'>
@@ -17,9 +27,6 @@
         
       </article>
       <article>
-        <br/>
-        <br/>
-        <br/>
         
         <h3>TL;DR: ( in order of can-I-use-this-now-or-what )</h3>
         
@@ -30,7 +37,22 @@
           <li>WebAPI for Mobile</li>
           <li>ES5</li>
         </ol>
+        
+        <p class="linkage" style="font-size: 80%"> <em>Note: Mozilla experiments with the web and help create standards that work with all browers ( admittedly, with mixed results! )</em></p>
       </article>
+      
+      <article>
+        
+        <h3 style="margin-top: 40px;">Ah, standards.</h3>
+        <p style="text-align: center">
+          <img
+               style="margin-top: 80px;"
+               src="http://imgs.xkcd.com/comics/standards.png"
+               alt="Fortunately, the charging one has been solved now that we've all standardized on mini-USB. Or is it micro-USB? Shit."/>
+        </p>
+        
+      </article>
+      
       <article>
         
         <h3>Mozilla's Add-on SDK, aka Jetpack</h3>
@@ -43,6 +65,7 @@
         </ul>
 
         <p class="linkage"><a href="https://addons.mozilla.org/en-US/developers/docs/sdk/1.0/">https://addons.mozilla.org/en-US/developers/docs/sdk/1.0/</a></p>
+        <p class="linkage"><a href="https://builder.addons.mozilla.org/">https://builder.addons.mozilla.org/</a></p>
       </article>
       
       <article>
@@ -64,11 +87,15 @@
         <h3>BrowserId</h3>
         
         <ul>
-          <li>browser-based, user-centric single sign-on.</li>
-          <li>we're targeting a cross-browser, standards-based </li>
+          <li>Secure, password-less login using a trusted third party.</li>
+          <li>Simple JavaScript-based integration for web developers.</li>
+          <li>Core concept is the familiar 'email account control' determinism.</li>
+          <li>The intention is to create a standard that makes this easier for everyone.</li>
         </ul>
         
-        <p class="linkage"><a href="https://browserid.org/">https://browserid.org/</a></p>
+        <p class="linkage">Guide: <a href="https://browserid.org/developers">https://browserid.org/developers</a></p>
+        <p class="linkage">Code: <a href="https://github.com/mozilla/browserid">https://github.com/mozilla/browserid</a></p>  
+        <p class="linkage">Demo: <a href="http://myfavoritebeer.org/">http://myfavoritebeer.org/</a></p>
 
       </article>
       
