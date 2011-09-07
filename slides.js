@@ -556,7 +556,8 @@ function addGeneralStyle() {
   var el = document.createElement('link');
   el.rel = 'stylesheet';
   el.type = 'text/css';
-  el.href = PERMANENT_URL_PREFIX + 'styles.css';
+  //el.href = PERMANENT_URL_PREFIX + 'styles.css';
+  el.href = 'styles.css';
   document.body.appendChild(el);
   
   var el = document.createElement('meta');
@@ -586,7 +587,7 @@ function handleDomLoaded() {
 
   setupFrames();
 
-  addFontStyle();
+  //addFontStyle();
   addGeneralStyle();
   addPrettify();
   addEventListeners();

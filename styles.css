@@ -97,19 +97,11 @@ body {
 }
 
 .slides.template-default > article:not(.nobackground):not(.biglogo) {
-  background: url(images/google-logo-small.png) 710px 625px no-repeat;  
+  background: url(images/moz_logo.png) 710px 625px no-repeat; 
   
   background-color: white;  
-} 
-
-.slides.template-io2011 > article:not(.nobackground):not(.biglogo) {
-  background: url(images/colorbar.png) 0 600px repeat-x,
-              url(images/googleio-logo.png) 640px 625px no-repeat;
-
-  background-size: 100%, 225px;  
-
-  background-color: white;  
 }
+
 .slides.layout-widescreen > article:not(.nobackground):not(.biglogo),
 .slides.layout-faux-widescreen > article:not(.nobackground):not(.biglogo) {
   background-position-x: 0, 840px;
@@ -254,8 +246,8 @@ body {
   color: rgb(102, 102, 102);
   text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 25px;
+  /*line-height: 36px;*/
 
   letter-spacing: -1px;
 }
@@ -364,7 +356,7 @@ article.fill h3 {
 }
 
 ul {
-  list-style: none;
+  /*list-style: none;*/
   margin: 0;
   padding: 0;
 
@@ -384,14 +376,15 @@ li {
 
   margin-bottom: .5em;
 }
-li::before {
-  content: '·';
 
-  width: .75em;
-  margin-left: -.75em;
-
-  position: absolute;
-}
+/*ul li::before {*/
+/*  content: '·';*/
+/**/
+/*  width: 1em;*/
+/*  margin-left: -.75em;*/
+/**/
+/*  position: absolute;*/
+/*}*/
 
 pre {
   font-family: 'Droid Sans Mono', 'Courier New', monospace;
