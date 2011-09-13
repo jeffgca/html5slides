@@ -365,7 +365,7 @@ ul {
   margin-left: .75em;
 }
 ul:first-child {
-  margin-top: 0;
+  /*margin-top: 0;*/
 }
 ul ul {
   margin-top: .5em;
