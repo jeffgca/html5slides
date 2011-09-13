@@ -1,30 +1,89 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Presentation</title>
+    <title>Interacting with Web Content using the Mozilla Add-on SDK</title>
 
     <meta charset='utf-8'>
-    <style type="text/css">
-    
-    article {
-      padding-top: 40px;
-    }
-    h3 {
-      padding-top: 30px;
-    }
-    
-    </style>
     <script src="slides.js"></script>
   </head>
     <body style='display: none'>
 
     <section class='slides layout-regular template-default'>
       <article>
-        <h1>This is the first slide.</h1>
+        <h1>Mozilla Add-on SDK:</h1>
+        <h3>Interacting with Web Content.</h3>
+        <p>Jeff Griffiths <br/>September 13, 2011</p>
       </article>
       <article>
-        <h3>This is the next slide.</h3>
+        <h3>Content scripts</h3>
+        <ul>
+         <li>inject any JavaScript logic into a page:
+          <ul>
+            <li>inline JS code</li>
+            <li>your own scripts and libraries</li>
+            <li>3rd party JS libraries such as jQuery</li>
+          </ul>
+         </li>
+         <li>modify the page's DOM</li>
+         <li>communicate from the content script back to your add-on code</li>
+        </ul>
       </article>
+      
+      <article>
+        <h3>Simple Example: Page Exterminator</h3>
+<pre>var data = require("self").data;
+
+var pageMod = require("page-mod").PageMod({
+  include: ['http://talks.canuckistani.ca/*'],
+  contentScript: 'if (confirm("EXTERMINATE???")) ' + 
+    '{ document.body.innerHTML = ' +
+    '\'&lt;img src="http://dailypop.files.wordpress.com/2010/04/dalek.gif"&gt;\';' + 
+    'document.body.style.display="block"; ' + 
+    '};',
+  contentScriptWhen: 'end',
+});</pre>
+        <a href="https://builder.addons.mozilla.org/addon/1016214/latest/">Link</a>
+      </article>
+      
+      <article>
+        <h3>Anatomy of this page-mod</h3>
+        <p>
+        <ol>
+          <li><code>include: ['http://talks.canuckistani.ca/*']</code><br/>
+            A string url pattern, or array of url patterns.
+          </li>
+          <li><code>contentScript: "..."</code><br/> A string of JavaScript code to
+          run.</li>
+          <li><code>contentScriptWhen: 'end'</code><br/>
+          When do we run this code?
+          The default is 'end', meaning that the script is not run until the
+          page is done loading</li>
+        </ol>
+        </p>
+      </article>
+
+
+      <article>
+<h3>Content script security model</h3>
+
+<ul>
+<li>content scripts act using a proxy called Xraywrapper</li>
+<li>window is a proxy, not the real dom</li>
+<li>JS object or JS initiated modifications to the page are not visible in content script:
+    <ul>
+      <li>page loads jQuery</li>
+      <li>in content script, window.jQuery is undefined</li>
+    </ul>
+</li>
+</ul>
+      </article>
+
+      <article>
+        <h3>Wait, there's more!</h3>
+        
+      </article>
+      
+      
   </body>
 </html>
     
