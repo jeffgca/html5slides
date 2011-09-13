@@ -9,27 +9,163 @@
     <body style='display: none'>
 
     <section class='slides layout-regular template-default'>
-      <article>
-        <h1>Mozilla Add-on SDK:</h1>
-        <h3>Interacting with Web Content.</h3>
-        <p>Jeff Griffiths <br/>September 13, 2011</p>
-      </article>
-      <article>
-        <h3>Content scripts</h3>
-        <ul>
-         <li>inject any JavaScript logic into a page:
-          <ul>
-            <li>inline JS code</li>
-            <li>your own scripts and libraries</li>
-            <li>3rd party JS libraries such as jQuery</li>
-          </ul>
-         </li>
-         <li>modify the page's DOM</li>
-         <li>communicate from the content script back to your add-on code</li>
-        </ul>
-      </article>
       
-      <article>
+<article>
+  <h1>Getting started</h1>
+  <h3>with Mozilla's Add-on SDK</h3>
+  <p>( aka Jetpack )</p>
+</article>
+
+<article>
+
+<h3 id="a-brief-history">A Brief History</h3>
+
+<ul>
+  <li>The Jetpack project started in Mozilla Labs in 2009</li>
+  <li>goal is to simplify add-on development:
+    <ul>
+      <li>no Xul overlays</li>
+      <li>high-level JavaScript APIs</li>
+      <li>packaging tool</li>
+      <li>integrated test framework</li>
+      <li>extensibility via modules using CommonJS format.</li>
+    </ul>
+  </li>
+</ul>
+</article>
+      
+<article>
+<h3 id="sdk-11">SDK 1.1!</h3>
+
+<ul>
+  <li>1.0 Released June, 2011</li>
+  <li>1.1 released Sept 13, 2011:
+    <ul>
+      <li>stabilization release</li>
+      <li>compatibility fixes for Firefox 7+</li>
+    </ul>
+  </li>
+</ul>
+</article>
+
+<article>
+<h3 id="current-state">Current State</h3>
+
+<ul>
+  <li>Goal is to allow easy implementation of simple add-ons</li>
+  <li>Missing functionality can be implemented via modules with chrome access</li>
+  <li>1.0 contains a useful but incomplete range of modules</li>
+  
+  <li>Obvious advantages:
+    <ul>
+      <li>Always restart-less</li>
+      <li>Test framework</li>
+      <li>Future-proof*</li>
+    </ul> 
+  </li>
+</ul>
+  
+
+  
+
+<p class="disclaimer">* As much as we can make it.</p>
+</article>
+<article>
+
+<h3>Addon-kit Module overview</h3>
+
+<ul>
+  <li>Web content
+    <ul>
+      <li>windows, tabs, pag-mod</li>
+    </ul>
+  </li>
+  <li>User interface &amp; interaction
+    <ul>
+      <li>widget, panel, selection, context-menu</li>
+    </ul>
+  </li>
+  <li>OS integration
+    <ul>
+      <li>notifications, selection, clipboard, hotkeys</li>
+    </ul>
+  </li>
+  <li>Services &amp; data:
+    <ul>
+      <li>request, simple-storage, page-worker</li>
+    </ul>
+  </li>
+  <li>Utilities:
+    <ul>
+      <li>timers, passwords, private-browsing</li>
+    </ul>
+  </li>
+</ul>  
+</article>
+
+<article>
+<h1 id="lets-get-set-up">Let's Get set up!</h1>
+</article>
+
+<article>
+<h3 id="local-development">Local development</h3>
+
+
+<p>Requirements:</p>
+  <ul>
+    <li>Python ( for Windows users )</li>
+    <li>a text editor with good javascript support</li>
+  </ul>
+  
+<p>Set-up</p>
+  <ul>
+    <li>download the SDK and unzip, or</li>
+    <li>check out the source from Github</li>
+    <li>in a console window:
+      <ul id="inside-2">
+        <li>cd to /path/to/SDK</li>
+        <li>source bin/activate</li>
+      </ul>
+    </li>
+  </ul>
+</article>
+
+<article>
+<h3 id="online-developer-with-builder">Online developer with Builder:</h3>
+
+<ul>
+  <li>pre-requisites:
+    <ul>
+      <li>Firefox</li>
+      <li>Builder 'helper' add-on</li>
+      <li>AMO account</li>
+    </ul>
+  </li>
+</ul>
+</article>
+
+<article>
+  <h1>Part 2<br/>Interacting with Web Content</h1>
+  
+</article>
+
+
+<article>
+  <h3>Content scripts</h3>
+  <ul>
+   <li>inject any JavaScript logic into a page:
+    <ul>
+      <li>inline JS code</li>
+      <li>your own scripts and libraries</li>
+      <li>3rd party JS libraries such as jQuery</li>
+    </ul>
+   </li>
+   <li>modify the page's DOM</li>
+   <li>communicate from the content script back to your add-on code</li>
+  </ul>
+</article>
+      
+<article>
         <h3>Simple Example: Page Exterminator</h3>
 <pre>var data = require("self").data;
 
@@ -43,27 +179,27 @@ var pageMod = require("page-mod").PageMod({
   contentScriptWhen: 'end',
 });</pre>
         <a href="https://builder.addons.mozilla.org/addon/1016214/latest/">Link</a>
-      </article>
-      
-      <article>
-        <h3>Anatomy of this page-mod</h3>
-        <p>
-        <ol>
-          <li><code>include: ['http://talks.canuckistani.ca/*']</code><br/>
-            A string url pattern, or array of url patterns.
-          </li>
-          <li><code>contentScript: "..."</code><br/> A string of JavaScript code to
-          run.</li>
-          <li><code>contentScriptWhen: 'end'</code><br/>
-          When do we run this code?
-          The default is 'end', meaning that the script is not run until the
-          page is done loading</li>
-        </ol>
-        </p>
-      </article>
+</article>
+
+<article>
+  <h3>Anatomy of this page-mod</h3>
+  <p>
+  <ol>
+    <li><code>include: ['http://talks.canuckistani.ca/*']</code><br/>
+      A string url pattern, or array of url patterns.
+    </li>
+    <li><code>contentScript: "..."</code><br/> A string of JavaScript code to
+    run.</li>
+    <li><code>contentScriptWhen: 'end'</code><br/>
+    When do we run this code?
+    The default is 'end', meaning that the script is not run until the
+    page is done loading</li>
+  </ol>
+  </p>
+</article>
 
 
-      <article>
+<article>
 <h3>Content script security model</h3>
 
 <ul>
@@ -78,12 +214,76 @@ var pageMod = require("page-mod").PageMod({
 </ul>
       </article>
 
-      <article>
-        <h3>Wait, there's more!</h3>
-        
-      </article>
-      
-      
+<article>
+  <h1>Wait, there's more!</h1>
+  
+</article>
+
+<article>
+  <h3><del>Awesome</del> er, <em>splendid</em> page-mod implementation</h3>
+  
+  <pre>var pageMod = require("page-mod").PageMod({
+  include: ['*.canuckistani.ca'],
+  contentScriptWhen: 'end',
+  contentScriptFile: [data.url('lib.js'), data.url('jquery.js')],
+  onAttach: function(worker) {
+    workers.push(worker);
+    worker.on('detach', function () {
+      detachWorker(this, workers);
+    });
+    
+    worker.postMessage('42'); 
+  }
+});</pre>
+<a href="https://builder.addons.mozilla.org/addon/1015111/latest/">Link</a>
+</article>
+
+<article>
+  <h3>Previous example, dissected!</h3>
+  
+  <ul>
+    <li><code>contentScriptFile</code>: takes a file path or array of file paths
+    of scripts to inject into the content script environment.</li>
+    <li><code>onAttach</code>: run a callback when a matched document is loaded.</li>
+    <li><code>worker.on('detach', fn())</code>: clean up the worker pool when a
+    document is removed.</li>
+    <li><code>worker.postMessage('42')</code>: post a message event to your content script.</li>
+  </ul>
+  
+  
+</article>
+
+<article>
+  <h3>Matching content script:</h3>
+  <pre>self.on('message', function (payload) {
+    window.document.body.innerHTML(
+      'The answer to the ultimate question of life, the universe ' +
+      'and everything is '+parseInt(payload));
+});</pre>
+<p>Very basic event handler for the 'event' message.</p>
+</article>
+
+<article>
+  <h3>Alternate module: Tabs</h3>
+  
+<pre>var data = require("self").data;
+var tabs = require("tabs");
+ 
+tabs.on('activate', function(tab) {
+  tab.attach({
+  contentScript: 'if (confirm("EXTERMINATE???")) ' + 
+    '{ document.body.innerHTML = ' +
+    '\'&lt;img src="http://dailypop.files.wordpress.com/2010/04/dalek.gif"&gt;\';' + 
+    'document.body.style.display="block"; ' + 
+    '};',
+  });
+});
+</pre>
+
+<a href="https://builder.addons.mozilla.org/addon/1016218/latest/">Linkink</a>
+  
+</article>
+
   </body>
 </html>
     
