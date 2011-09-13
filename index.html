@@ -13,11 +13,9 @@
 <article>
   <h1>Getting started</h1>
   <h3>with Mozilla's Add-on SDK</h3>
-  <p>( aka Jetpack )</p>
 </article>
 
 <article>
-
 <h3 id="a-brief-history">A Brief History</h3>
 
 <ul>
@@ -36,7 +34,6 @@
       
 <article>
 <h3 id="sdk-11">SDK 1.1!</h3>
-
 <ul>
   <li>1.0 Released June, 2011</li>
   <li>1.1 released Sept 13, 2011:
@@ -53,7 +50,7 @@
 
 <ul>
   <li>Goal is to allow easy implementation of simple add-ons</li>
-  <li>Missing functionality can be implemented via modules with chrome access</li>
+  <li>Missing functionality can be implemented via modules</li>
   <li>1.0 contains a useful but incomplete range of modules</li>
   
   <li>Obvious advantages:
@@ -65,6 +62,15 @@
   </li>
 </ul>
 
+</article>
+
+<article>
+  <h3>Roadmap</h3>
+
+    <p>Published roadmap:</p>
+    <a href="https://wiki.mozilla.org/Jetpack/Roadmap">https://wiki.mozilla.org/Jetpack/Roadmap</a></li>
+    <li></li>
+  </ul>
 </article>
 <article>
 
@@ -109,7 +115,7 @@
 
 <p>Requirements:</p>
   <ul>
-    <li>Python ( for Windows users )</li>
+    <li>install Python ( for Windows users )</li>
     <li>a text editor with good javascript support</li>
   </ul>
   
@@ -120,21 +126,28 @@
     <li>in a console window:
       <ul id="inside-2">
         <li>cd to /path/to/SDK</li>
-        <li>source bin/activate</li>
+        <li><code>source bin/activate</code></li>
       </ul>
     </li>
-  </ul>
+  </ul> 
 </article>
 
 <article>
 <h3 id="online-developer-with-builder">Online developer with Builder:</h3>
 
 <ul>
-  <li>pre-requisites:
+  <li>Requirements:
     <ul>
       <li>Firefox</li>
       <li>Builder 'helper' add-on</li>
       <li>AMO account</li>
+    </ul>
+  </li>
+  <li>Features:
+    <ul>
+      <li>in-browser development</li>
+      <li>create and share re-usable modules</li>
+      <li>planned: publish to AMO</li>
     </ul>
   </li>
 </ul>
@@ -142,9 +155,7 @@
 
 <article>
   <h1>Part 2<br/>Interacting with Web Content</h1>
-  
 </article>
-
 
 <article>
   <h3>Content scripts</h3>
@@ -162,7 +173,7 @@
 </article>
       
 <article>
-        <h3>Simple Example: Page Exterminator</h3>
+  <h3>Simple Example: Page Exterminator</h3>
 <pre>var data = require("self").data;
 
 var pageMod = require("page-mod").PageMod({
@@ -250,13 +261,14 @@ var pageMod = require("page-mod").PageMod({
 </article>
 
 <article>
-  <h3>Matching content script:</h3>
-  <pre>self.on('message', function (payload) {
+  <h3>Matching content script</h3>
+<p>Very basic event handler for the 'message' event:</p>
+<pre>self.on('message', function (payload) {
     window.document.body.innerHTML(
       'The answer to the ultimate question of life, the universe ' +
       'and everything is '+parseInt(payload));
 });</pre>
-<p>Very basic event handler for the 'event' message.</p>
+
 </article>
 
 <article>
@@ -301,5 +313,5 @@ tabs.on('activate', function(tab) {
   </ul>
 </article>
 
-  </body>
+</body>
 </html>
