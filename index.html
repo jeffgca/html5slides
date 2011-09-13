@@ -66,11 +66,20 @@
 
 <article>
   <h3>Roadmap</h3>
-
-    <p>Published roadmap:</p>
-    <a href="https://wiki.mozilla.org/Jetpack/Roadmap">https://wiki.mozilla.org/Jetpack/Roadmap</a></li>
-    <li></li>
+  <ul>
+    <li>Top priorities: Mobile, Electrolysis, Localization</li>
+    <li>Secondary priorities:
+      <ul>
+        <li>better support for existing add-on developers</li>
+        <li>SDK simplification</li>
+        <li>missing pieces: Prefs, Sidebar, Add-on Tab, Tab Groups</li>
+        <li>more missing pieces: minimal / packed xpis, restart-less testing</li>
+        <li>Hug the web harder.</li>
+      </ul>
+    </li>
   </ul>
+<p>Published roadmap:
+<a href="https://wiki.mozilla.org/Jetpack/Roadmap">https://wiki.mozilla.org/Jetpack/Roadmap</a></p>
 </article>
 <article>
 
@@ -185,7 +194,7 @@ var pageMod = require("page-mod").PageMod({
     '};',
   contentScriptWhen: 'end',
 });</pre>
-        <a href="https://builder.addons.mozilla.org/addon/1016214/latest/">Link</a>
+        <a target="_blank" href="https://builder.addons.mozilla.org/addon/1016214/latest/">Link</a>
 </article>
 
 <article>
@@ -232,7 +241,7 @@ var pageMod = require("page-mod").PageMod({
   <pre>var pageMod = require("page-mod").PageMod({
   include: ['*.canuckistani.ca'],
   contentScriptWhen: 'end',
-  contentScriptFile: [data.url('lib.js'), data.url('jquery.js')],
+  contentScriptFile: [data.url('lib.js')],
   onAttach: function(worker) {
     workers.push(worker);
     worker.on('detach', function () {
@@ -242,7 +251,7 @@ var pageMod = require("page-mod").PageMod({
     worker.postMessage('42'); 
   }
 });</pre>
-<a href="https://builder.addons.mozilla.org/addon/1015111/latest/">Link</a>
+<a target="_blank" href="https://builder.addons.mozilla.org/addon/1015111/latest/">Link</a>
 </article>
 
 <article>
@@ -288,7 +297,7 @@ tabs.on('activate', function(tab) {
 });
 </pre>
 
-<a href="https://builder.addons.mozilla.org/addon/1016218/latest/">Link</a>
+<a target="_blank" href="https://builder.addons.mozilla.org/addon/1016218/latest/">Link</a>
   
 </article>
 
@@ -311,6 +320,14 @@ tabs.on('activate', function(tab) {
       </ul>
     </li>
   </ul>
+</article>
+
+<article>
+  <h1>We are all Rocketeers</h1>
+</article>
+
+<article>
+  <h3>Get involved, kick the tires, let us know.</h3>
 </article>
 
 </body>
