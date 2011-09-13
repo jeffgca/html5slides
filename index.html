@@ -24,7 +24,7 @@
   <li>The Jetpack project started in Mozilla Labs in 2009</li>
   <li>goal is to simplify add-on development:
     <ul>
-      <li>no Xul overlays</li>
+      <li>no XUL</li>
       <li>high-level JavaScript APIs</li>
       <li>packaging tool</li>
       <li>integrated test framework</li>
@@ -60,15 +60,11 @@
     <ul>
       <li>Always restart-less</li>
       <li>Test framework</li>
-      <li>Future-proof*</li>
+      <li>Future-proof!</li>
     </ul> 
   </li>
 </ul>
-  
 
-  
-
-<p class="disclaimer">* As much as we can make it.</p>
 </article>
 <article>
 
@@ -284,6 +280,26 @@ tabs.on('activate', function(tab) {
   
 </article>
 
+<article>
+  <h3>page-mod vs. tabs</h3>
+  <ul>
+    <li>tabs:
+      <ul>
+        <li>utilities for opening & closing tabs</li>
+        <li>tabs meta-data: title, url, etc.</li>
+        <li>react to tab-related events: open, close, ready, activate, deactivate</li>
+        <li>content scripts are loaded into the tab's <em>top-level</em> content.</li>
+      </ul>
+    </li>
+    <li>page-mod:
+      <ul>
+        <li><code>['*']</code>: target any document loaded</li>
+        <li>target very specific urls: <br/><code>['http://canuckistani.ca/some_page.html']</code> </li>
+        <li>execute on start, ready or end ( default )</li>
+      </ul>
+    </li>
+  </ul>
+</article>
+
   </body>
 </html>
-    
