@@ -11,169 +11,18 @@
     <section class='slides layout-regular template-default'>
       
 <article>
-  <h1>Getting started</h1>
-  <h3>with Mozilla's Add-on SDK</h3>
+  <h1>Interacting with <br/>Web Content</h1>
+  <h3>Mozilla Add-on SDK Workshop</h3>
 </article>
 
 <article>
   <h1>Follow along</h1>
-  <h3><a href="http://talks.canuckistani.ca/allhands2011">http://talks.canuckistani.ca/allhands2011</a></h3>
-</article>
-
-<article>
-<h3 id="a-brief-history">A Brief History</h3>
-
-<ul>
-  <li>The Jetpack project started in Mozilla Labs in 2009</li>
-  <li>goal is to simplify add-on development:
-    <ul>
-      <li>no XUL</li>
-      <li>high-level JavaScript APIs</li>
-      <li>packaging tool</li>
-      <li>integrated test framework</li>
-      <li>extensibility via modules using CommonJS format.</li>
-    </ul>
-  </li>
-</ul>
-</article>
-      
-<article>
-<h3 id="sdk-11">SDK 1.1!</h3>
-<ul>
-  <li>1.0 Released June, 2011</li>
-  <li>1.1 released Sept 13, 2011:
-    <ul>
-      <li>stabilization release</li>
-      <li>compatibility fixes for Firefox 7+</li>
-    </ul>
-  </li>
-</ul>
-</article>
-
-<article>
-<h3 id="current-state">Current State</h3>
-
-<ul>
-  <li>Goal is to allow easy implementation of simple add-ons</li>
-  <li>Missing functionality can be implemented via modules</li>
-  <li>1.0 contains a useful but incomplete range of modules</li>
-  
-  <li>Obvious advantages:
-    <ul>
-      <li>Always restart-less</li>
-      <li>Test framework</li>
-      <li>Future-proof!</li>
-    </ul> 
-  </li>
-</ul>
-
-</article>
-
-<article>
-  <h3>Roadmap</h3>
-  <ul>
-    <li>Top priorities: Mobile, Electrolysis, Localization</li>
-    <li>Secondary priorities:
-      <ul>
-        <li>better support for existing add-on developers</li>
-        <li>SDK simplification</li>
-        <li>missing pieces: Prefs, Sidebar, Add-on Tab, Tab Groups</li>
-        <li>more missing pieces: minimal / packed xpis, restart-less testing</li>
-        <li>Hug the web harder.</li>
-      </ul>
-    </li>
-  </ul>
-<p>Published roadmap:
-<a href="https://wiki.mozilla.org/Jetpack/Roadmap">https://wiki.mozilla.org/Jetpack/Roadmap</a></p>
-</article>
-<article>
-
-<h3>Addon-kit Module overview</h3>
-
-<ul>
-  <li>Web content
-    <ul>
-      <li>windows, tabs, pag-mod</li>
-    </ul>
-  </li>
-  <li>User interface &amp; interaction
-    <ul>
-      <li>widget, panel, selection, context-menu</li>
-    </ul>
-  </li>
-  <li>OS integration
-    <ul>
-      <li>notifications, selection, clipboard, hotkeys</li>
-    </ul>
-  </li>
-  <li>Services &amp; data:
-    <ul>
-      <li>request, simple-storage, page-worker</li>
-    </ul>
-  </li>
-  <li>Utilities:
-    <ul>
-      <li>timers, passwords, private-browsing</li>
-    </ul>
-  </li>
-</ul>  
-</article>
-
-<article>
-<h1 id="lets-get-set-up">Let's Get set up!</h1>
-</article>
-
-<article>
-<h3 id="local-development">Local development</h3>
-
-
-<p>Requirements:</p>
-  <ul>
-    <li>install Python ( for Windows users )</li>
-    <li>a text editor with good javascript support</li>
-  </ul>
-  
-<p>Set-up</p>
-  <ul>
-    <li>download the SDK and unzip, or</li>
-    <li>check out the source from Github</li>
-    <li>in a console window:
-      <ul id="inside-2">
-        <li>cd to /path/to/SDK</li>
-        <li><code>source bin/activate</code></li>
-      </ul>
-    </li>
-  </ul> 
-</article>
-
-<article>
-<h3 id="online-developer-with-builder">Online developer with Builder:</h3>
-
-<ul>
-  <li>Requirements:
-    <ul>
-      <li>Firefox</li>
-      <li>Builder 'helper' add-on</li>
-      <li>AMO account</li>
-    </ul>
-  </li>
-  <li>Features:
-    <ul>
-      <li>in-browser development</li>
-      <li>create and share re-usable modules</li>
-      <li>planned: publish to AMO</li>
-    </ul>
-  </li>
-</ul>
-</article>
-
-<article>
-  <h1>Part 2<br/>Interacting with Web Content</h1>
+  <h3><a href="http://talks.canuckistani.ca/webcontent-uk-2011">http://talks.canuckistani.ca/webcontent-uk-2011</a></h3>
 </article>
 
 <article>
   <h3>Content scripts</h3>
-  <ul>
+  <ul class="build">
    <li>inject any JavaScript logic into a page:
     <ul>
       <li>inline JS code</li>
@@ -203,9 +52,24 @@ var pageMod = require("page-mod").PageMod({
 </article>
 
 <article>
+<h3>Content script security model</h3>
+
+<ul>
+<li>content scripts act via a proxy to the actual web content</li>
+<li>window is a proxy, not the real dom</li>
+<li>JS object or JS initiated modifications to the page are not visible in content script:
+    <ul>
+      <li>page loads jQuery</li>
+      <li>in content script, window.jQuery is undefined</li>
+    </ul>
+</li>
+</ul>
+</article>
+
+<article>
   <h3>Anatomy of this page-mod</h3>
   <p>
-  <ol>
+  <ul class="build">
     <li><code>include: ['http://talks.canuckistani.ca/*']</code><br/>
       A string url pattern, or array of url patterns.
     </li>
@@ -215,25 +79,9 @@ var pageMod = require("page-mod").PageMod({
     When do we run this code?
     The default is 'end', meaning that the script is not run until the
     page is done loading</li>
-  </ol>
+  </ul>
   </p>
 </article>
-
-
-<article>
-<h3>Content script security model</h3>
-
-<ul>
-<li>content scripts act using a proxy called Xraywrapper</li>
-<li>window is a proxy, not the real dom</li>
-<li>JS object or JS initiated modifications to the page are not visible in content script:
-    <ul>
-      <li>page loads jQuery</li>
-      <li>in content script, window.jQuery is undefined</li>
-    </ul>
-</li>
-</ul>
-      </article>
 
 <article>
   <h1>Wait, there's more!</h1>
@@ -241,7 +89,7 @@ var pageMod = require("page-mod").PageMod({
 </article>
 
 <article>
-  <h3><del>Awesome</del> er, <em>splendid</em> page-mod implementation</h3>
+  <h3>Complete page-mod implementation</h3>
   
   <pre>var pageMod = require("page-mod").PageMod({
   include: ['*.canuckistani.ca'],
@@ -262,7 +110,7 @@ var pageMod = require("page-mod").PageMod({
 <article>
   <h3>Previous example, dissected!</h3>
   
-  <ul>
+  <ul class="build">
     <li><code>contentScriptFile</code>: takes a file path or array of file paths
     of scripts to inject into the content script environment.</li>
     <li><code>onAttach</code>: run a callback when a matched document is loaded.</li>
