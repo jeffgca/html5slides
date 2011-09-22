@@ -358,7 +358,7 @@ article.fill h3 {
 ul {
   /*list-style: none;*/
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 16px;
   margin-top: 20px;
   margin-left: .75em;
 }
