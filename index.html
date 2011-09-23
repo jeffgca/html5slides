@@ -54,6 +54,57 @@
 </article>
 
 <article>
+  <h3>Content script security model</h3>
+  <ul class="build">
+    <li><code>window</code> object is actually a proxy to the page's window.</li>
+    <li>JS running in the page cannot change anything the content script has access to.</li>
+  </ul>
+  
+<div style="margin-top: 0;" class="build">
+  <div>
+    <p style="margin: 0 0 20px 0;">Example</p>
+    <p>Page script:
+      <pre style="margin: 6px 0 20px 0;">window.alert = function(arg) { /* evil code here */ }</pre></p>
+    
+      <p>Content script:
+      <pre style="margin: 6px 0 20px 0;">window.alert("Heellooooooo, Looondoooon!!!!");</pre></p>
+    
+      <p>Result?</p>
+  </div>
+</div>
+
+</article>
+
+<article>
+  <h3>page-mod</h3>
+  <ul class="build">
+    <li><code>['*']</code>: target any document loaded</li>
+    <li>target very specific urls: <br/><code>['http://canuckistani.ca/some_page.html']</code></li>
+    <li>execute on start, ready or end ( default )</li>
+    <li>react to when the content scritps are attached</li>
+    <li>emit events into your content scripts via a worker</li>
+  </ul>
+</article>
+
+<article>
+  <h3>'Batteries included' example</h3>
+  <pre>var pageMod = require("page-mod").PageMod({
+    include: ['*.canuckistani.ca'],
+    contentScriptWhen: 'end',
+    contentScriptFile: [data.url('lib.js')],
+    onAttach: function(worker) {
+      workers.push(worker);
+      worker.on('detach', function () {
+        detachWorker(this, workers);
+      });
+      
+      worker.postMessage('42'); 
+    }
+  });</pre>
+  <a target="_blank" href="https://builder.addons.mozilla.org/addon/1015111/latest/">Link</a>
+</article>
+
+<article>
   <h3></h3>
   <ul>
     <li></li>
@@ -61,7 +112,7 @@
 </article>
 
 <article>
-  <h3>page-mod vs. tabs</h3>
+  <h3>tabs</h3>
   <ul>
     <li>tabs:
       <ul>
@@ -71,13 +122,14 @@
         <li>content scripts are loaded into the tab's <em>top-level</em> content.</li>
       </ul>
     </li>
-    <li>page-mod:
-      <ul>
-        <li><code>['*']</code>: target any document loaded</li>
-        <li>target very specific urls: <br/><code>['http://canuckistani.ca/some_page.html']</code> </li>
-        <li>execute on start, ready or end ( default )</li>
-      </ul>
-    </li>
+
+  </ul>
+</article>
+
+<article>
+  <h1>Content script communications</h1>
+  <ul>
+    <li></li>
   </ul>
 </article>
 
