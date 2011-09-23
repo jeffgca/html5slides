@@ -34,124 +34,30 @@
    <li>communicate from the content script back to your add-on code</li>
   </ul>
 </article>
-      
+   
 <article>
-  <h3>Simple Example: Page Exterminator</h3>
-<pre>var data = require("self").data;
-
-var pageMod = require("page-mod").PageMod({
-  include: ['http://talks.canuckistani.ca/*'],
-  contentScript: 'if (confirm("EXTERMINATE???")) ' + 
-    '{ document.body.innerHTML = ' +
-    '\'&lt;img src="http://dailypop.files.wordpress.com/2010/04/dalek.gif"&gt;\';' + 
-    'document.body.style.display="block"; ' + 
-    '};',
-  contentScriptWhen: 'end',
-});</pre>
-        <a target="_blank" href="https://builder.addons.mozilla.org/addon/1016214/latest/">Link</a>
-</article>
-
-<article>
-<h3>Content script security model</h3>
-
-<ul>
-<li>content scripts act via a proxy to the actual web content</li>
-<li>window is a proxy, not the real dom</li>
-<li>JS object or JS initiated modifications to the page are not visible in content script:
-    <ul>
-      <li>page loads jQuery</li>
-      <li>in content script, window.jQuery is undefined</li>
-    </ul>
-</li>
-</ul>
-</article>
-
-<article>
-  <h3>Anatomy of this page-mod</h3>
-  <p>
-  <ul class="build">
-    <li><code>include: ['http://talks.canuckistani.ca/*']</code><br/>
-      A string url pattern, or array of url patterns.
-    </li>
-    <li><code>contentScript: "..."</code><br/> A string of JavaScript code to
-    run.</li>
-    <li><code>contentScriptWhen: 'end'</code><br/>
-    When do we run this code?
-    The default is 'end', meaning that the script is not run until the
-    page is done loading</li>
-  </ul>
-  </p>
-</article>
-
-<article>
-  <h1>Wait, there's more!</h1>
-  
-</article>
-
-<article>
-  <h3>Complete page-mod implementation</h3>
-  
+  <h3>Hello, world</h3>
   <pre>var pageMod = require("page-mod").PageMod({
-  include: ['*.canuckistani.ca'],
-  contentScriptWhen: 'end',
-  contentScriptFile: [data.url('lib.js')],
-  onAttach: function(worker) {
-    workers.push(worker);
-    worker.on('detach', function () {
-      detachWorker(this, workers);
-    });
-    
-    worker.postMessage('42'); 
-  }
+  include: ['*'],
+  contentScript: 'alert("Heellooooooo, Looondoooon!!!!")',
+  contentScriptWhen: 'ready',
 });</pre>
-<a target="_blank" href="https://builder.addons.mozilla.org/addon/1015111/latest/">Link</a>
-</article>
-
-<article>
-  <h3>Previous example, dissected!</h3>
   
+<div style="margin-top: 0;" class="build">
+  <h3>Dissection:</h3>
+</div>
   <ul class="build">
-    <li><code>contentScriptFile</code>: takes a file path or array of file paths
-    of scripts to inject into the content script environment.</li>
-    <li><code>onAttach</code>: run a callback when a matched document is loaded.</li>
-    <li><code>worker.on('detach', fn())</code>: clean up the worker pool when a
-    document is removed.</li>
-    <li><code>worker.postMessage('42')</code>: post a message event to your content script.</li>
+    <li><code>include: ['*']</code> which site(s) do we mod?</li>
+    <li><code>contentScript</code> JS code to run.</li>
+    <li><code>contentScriptWhen: 'ready'</code> when to run the code.</li>
   </ul>
-  
-  
 </article>
 
 <article>
-  <h3>Matching content script</h3>
-<p>Very basic event handler for the 'message' event:</p>
-<pre>self.on('message', function (payload) {
-    window.document.body.innerHTML(
-      'The answer to the ultimate question of life, the universe ' +
-      'and everything is '+parseInt(payload));
-});</pre>
-
-</article>
-
-<article>
-  <h3>Alternate module: Tabs</h3>
-  
-<pre>var data = require("self").data;
-var tabs = require("tabs");
- 
-tabs.on('activate', function(tab) {
-  tab.attach({
-  contentScript: 'if (confirm("EXTERMINATE???")) ' + 
-    '{ document.body.innerHTML = ' +
-    '\'&lt;img src="http://dailypop.files.wordpress.com/2010/04/dalek.gif"&gt;\';' + 
-    'document.body.style.display="block"; ' + 
-    '};',
-  });
-});
-</pre>
-
-<a target="_blank" href="https://builder.addons.mozilla.org/addon/1016218/latest/">Link</a>
-  
+  <h3></h3>
+  <ul>
+    <li></li>
+  </ul>
 </article>
 
 <article>
@@ -176,7 +82,7 @@ tabs.on('activate', function(tab) {
 </article>
 
 <article>
-  <h1>We are all <del>splendid</del> Rocketeers.</h1>
+  <h1>We are all Rocketeers!</h1>
 </article>
 
 <article>
