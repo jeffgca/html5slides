@@ -72,7 +72,13 @@
       <p>Result?</p>
   </div>
 </div>
+</article>
 
+<article>
+  <h1>Exercise 1:</h1>
+  <p>Expand the 'hello world' example to do something funny / evil / useful to every page.</p>
+  <p>**BUILDER LINK**, or</p>
+  <p><code>webcontent/example1</code> in the github repo</p>
 </article>
 
 <article>
@@ -81,8 +87,9 @@
     <li><code>['*']</code>: target any document loaded</li>
     <li>target very specific urls: <br/><code>['http://canuckistani.ca/some_page.html']</code></li>
     <li>execute on start, ready or end ( default )</li>
-    <li>react to when the content scritps are attached</li>
+    <li>react to the 'content script attached' event using onAttach</li>
     <li>emit events into your content scripts via a worker</li>
+    <li>drawback: loaded into any matching document, including iframes!</li>
   </ul>
 </article>
 
@@ -97,7 +104,6 @@
       worker.on('detach', function () {
         detachWorker(this, workers);
       });
-      
       worker.postMessage('42'); 
     }
   });</pre>
@@ -105,9 +111,12 @@
 </article>
 
 <article>
-  <h3></h3>
+  <h1>Exercise 2:</h1>
   <ul>
-    <li></li>
+    <li>use <a href="...builder">this example</a> to start</li>
+    <li>target a specific site and up / degrade it's usability</li>
+    <li>note: blanking out the page is too easy</li>
+    <li>be creative!</li>
   </ul>
 </article>
 
@@ -122,15 +131,101 @@
         <li>content scripts are loaded into the tab's <em>top-level</em> content.</li>
       </ul>
     </li>
+  </ul>
+</article>
 
+<article>
+  <h3>Tabs / onAttach example</h3>
+  <pre>var data = require("self").data;
+var tabs = require("tabs");
+ 
+tabs.on('ready', function(tab) {
+  tab.attach({
+  contentScript: 'if (confirm("EXTERMINATE???")) ' + 
+    '{ document.body.innerHTML = ' +
+    '\'&lt;img src=&quot;http://dailypop.files.wordpress.com/2010/04/dalek.gif&quot;&gt;\';' + 
+    'document.body.style.display="block"; ' + 
+    '};',
+  });
+});</pre>
+  
+<a href="...builder">Link</a>
+</article>
+
+<article>
+  <h1>Exercise 3</h1>
+  <ul>
+    <li>Use the tab onAttach example <a href="...builder">here</a></li>
+    <li>Implement some behaviour based on a different tab event.</li>
   </ul>
 </article>
 
 <article>
   <h1>Content script communications</h1>
   <ul>
-    <li></li>
+    <li>add-on code <==> content script</li>
+    <li>content script => page</li>
+    <li>page => content script</li>
   </ul>
+</article>
+
+<article>
+  <h3>Communicating with content scripts</h3>
+  <ul>
+    <li>EventEmitter pattern</li>
+    <li>postMessage</li>
+    <li>custom events</li>
+  </ul>
+</article>
+
+<article>
+  <h3>Example: posting a message to a content script.</h3>
+  <p style="margin: 0 0 20px 0;">Example</p>
+    <p>Add-on script:
+      <pre style="margin: 6px 0 20px 0;">!!code here</pre></p>
+      <p>Content script:
+      <pre style="margin: 6px 0 20px 0;">!!code here</pre></p>
+      
+    <a href="...to builder">Link</a>
+</article>
+
+<article>
+  <h3>Example: posting a message from a content script to your add-on.</h3>
+  <p style="margin: 0 0 20px 0;">Example</p>
+    <p>Add-on script:
+      <pre style="margin: 6px 0 20px 0;">!!code here</pre></p>
+      <p>Content script:
+      <pre style="margin: 6px 0 20px 0;">!!code here</pre></p>
+      
+    <a href="...to builder">Link</a>
+</article>
+
+<article>
+  <h3>Example: posting a message from a content script to a page.</h3>
+  <p style="margin: 0 0 20px 0;">Example</p>
+    <p>Page script:
+      <pre style="margin: 6px 0 20px 0;">!!code here</pre></p>
+      <p>Content script:
+      <pre style="margin: 6px 0 20px 0;">!!code here</pre></p>
+      
+    <a href="...to builder">Link</a>
+</article>
+
+<article>
+  <h3>Example: posting a message from a page to your add-on.</h3>
+  <p style="margin: 0 0 20px 0;">Example</p>
+    <p>Page script:
+      <pre style="margin: 6px 0 20px 0;">!!code here</pre></p>
+      <p>Content script:
+      <pre style="margin: 6px 0 20px 0;">!!code here</pre></p>
+      
+    <a href="...to builder">Link</a>
+</article>
+
+<article>
+  <h1>Exercise 4</h1>
+  <p>Using <a href="...builder">this example</a> as a starting point, implement
+  a button in a page that sens an event through to your add-on code in main.js.</p>
 </article>
 
 <article>
@@ -144,9 +239,8 @@
     <li><a href="http://groups.google.com/group/mozilla-labs-jetpack">Google Group</a></li>
     <li><a href="https://forums.mozilla.org/addons/viewforum.php?f=27">AMO Forum</a></li>
     <li><a href="https://wiki.mozilla.org/Jetpack#Weekly_Meeting">Weekly project meetings</a></li>
-    <li>SDK BOF: Thursday at 3PM - gather at the registration desk.</li>
+    <li><a href="http://stackoverflow.com/questions/tagged/jetpack">Stack Overflow</a></li>
   </ul>
 </article>
-
 </body>
 </html>
