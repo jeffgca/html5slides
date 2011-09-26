@@ -40,7 +40,7 @@
   <pre>var pageMod = require("page-mod").PageMod({
   include: ['*'],
   contentScript: 'alert("Heellooooooo, Looondoooon!!!!")',
-  contentScriptWhen: 'ready',
+  contentScriptWhen: 'end',
 });</pre>
   
 <div style="margin-top: 0;" class="build">
@@ -51,6 +51,8 @@
     <li><code>contentScript</code> JS code to run.</li>
     <li><code>contentScriptWhen: 'ready'</code> when to run the code.</li>
   </ul>
+  
+  <a href="https://builder.addons.mozilla.org/addon/1018002/revision/2/">Link</a>
 </article>
 
 <article>
@@ -69,16 +71,33 @@
       <p>Content script:
       <pre style="margin: 6px 0 20px 0;">window.alert("Heellooooooo, Looondoooon!!!!");</pre></p>
     
+      <a href="https://builder.addons.mozilla.org/addon/1017986/revision/25/">Link</a>
+    
       <p>Result?</p>
   </div>
 </div>
 </article>
 
 <article>
+  <h3>workaround: unsafeWindow</h3>
+  
+  <p><code>unsafeWindow</code>: direct access to the document from content script.
+  This is a security hole, here be dragons, this will steal your lunch, etc.</p>
+  
+  <p>Using previous example, if you change the content script to:</p>
+  
+  <p>Content script:
+  <pre style="margin: 6px 0 20px 0;">unsafeWindow.alert("Heellooooooo, Looondoooon!!!!");</pre></p>
+  
+  <p>Result: Hodor!!!</p>
+  
+</article>
+
+<article>
   <h1>Exercise 1:</h1>
   <p>Expand the 'hello world' example to do something funny / evil / useful to every page.</p>
-  <p>**BUILDER LINK**, or</p>
-  <p><code>webcontent/example1</code> in the github repo</p>
+  <p> <a href="https://builder.addons.mozilla.org/addon/1018002/revision/2/">Builder link</a>, or</p>
+  <p><code>webcontent/1-hello</code> in the github repo</p>
 </article>
 
 <article>
@@ -113,9 +132,10 @@
 <article>
   <h1>Exercise 2:</h1>
   <ul>
-    <li>use <a href="...builder">this example</a> to start</li>
+    <li>use <a href="https://builder.addons.mozilla.org/addon/1017561/revision/5/">
+    this example</a> to start<br/> ( or webcontent/2-pagemod in the git repo )</li>
     <li>target a specific site and up / degrade it's usability</li>
-    <li>note: blanking out the page is too easy</li>
+    <li>note: blanking out the page is too easy...</li>
     <li>be creative!</li>
   </ul>
 </article>
@@ -149,14 +169,20 @@ tabs.on('ready', function(tab) {
   });
 });</pre>
   
-<a href="...builder">Link</a>
+<a href="https://builder.addons.mozilla.org/addon/1016218/revision/7/">Link</a>
 </article>
 
 <article>
-  <h1>Exercise 3</h1>
+  <h3>Exercise 3.a</h3>
   <ul>
-    <li>Use the tab onAttach example <a href="...builder">here</a></li>
+    <li>Use the tab onAttach example <a href="https://builder.addons.mozilla.org/addon/1016218/revision/7/">here</a></li>
     <li>Implement some behaviour based on a different tab event.</li>
+  </ul>
+  
+  <h3>Exercise 3.b</h3>
+  <ul>
+    <li>Use the same <a href="https://builder.addons.mozilla.org/addon/1016218/revision/7/">example</a></li>
+    <li>adjust the behaviour so that the confirm dialog only pops up on mozilla.org.</li>
   </ul>
 </article>
 
