@@ -190,24 +190,15 @@ tabs.on('ready', function(tab) {
   <h1>Content script communications</h1>
   <ul>
     <li>add-on code <==> content script</li>
-    <li>content script => page</li>
-    <li>page => content script</li>
-  </ul>
-</article>
-
-<article>
-  <h3>Communicating with content scripts</h3>
-  <ul>
-    <li>EventEmitter pattern</li>
-    <li>postMessage</li>
-    <li>custom events</li>
+    <li>content script ==> page</li>
+    <li>content script <== page</li>
   </ul>
 </article>
 
 <article>
   <h3>Example: posting a message to a content script.</h3>
   <p style="margin: 0 0 20px 0;">Example</p>
-    <p>Add-on script:
+    <p>Add-on code:
       <pre style="margin: 6px 0 20px 0;">onAttach: function(worker) {
   workers.push(worker);
   worker.on('detach', function () {
@@ -227,11 +218,9 @@ tabs.on('ready', function(tab) {
 <article>
   <h3>Example: posting a message from a content script to your add-on.</h3>
   <p style="margin: 0 0 20px 0;">Example</p>
-    <p>Add-on script:
-      <pre style="margin: 6px 0 20px 0;">document.querySelector("#my-button").onclick = function(ev) {
-    self.postMessage("This is from the content script!");
-}</pre></p>
-      <p>Content script:
+    <p>Content script:
+      <pre style="margin: 6px 0 20px 0;">self.postMessage("This is from the content script!");</pre></p>
+      <p>Add-on code:
       <pre style="margin: 6px 0 20px 0;">worker.on("message", function(data) {
     console.log("Got message: " + data);
 })</pre></p>
@@ -242,13 +231,9 @@ tabs.on('ready', function(tab) {
 <article>
   <h3>Example: posting a message from a content script to a page.</h3>
   <p style="margin: 0 0 20px 0;">Example</p>
-    <p>Add-on code:
-      <pre style="margin: 6px 0 20px 0;">tabs.on("ready", function(tab) {
-    tab.attach({
-      contentScript: 'document.defaultView.postMessage("this is my message...", "*");'
-    });
-  }
-);</pre></p>
+    <p>Content script:
+      <pre style="margin: 6px 0 20px 0;">document.defaultView.postMessage(' +
+        '"this is my message...", "*");</pre></p>
       <p>Page code:
       <pre style="margin: 6px 0 20px 0;">window.addEventListener('message', function(e) {
     console.log("Got message: " + e.data);
@@ -258,24 +243,30 @@ tabs.on('ready', function(tab) {
 </article>
 
 <article>
-  <h3>Example: posting a message from a page to your add-on.</h3>
+  <h3>Example: posting a message from a page to your content script.</h3>
   <p style="margin: 0 0 20px 0;">Example</p>
     <p>Page script:
-      <pre style="margin: 6px 0 20px 0;">!!code here</pre></p>
+      <pre style="margin: 6px 0 20px 0;">$(document).ready(function() {
+    $("#clicker").click(function() {
+        window.postMessage("sending message from page!", "*");
+        return false;
+    });
+});</pre></p>
       <p>Add-on code:
 <pre style="margin: 6px 0 20px 0;">
 tab.attach({
-    contentScript: 'window.addEventListener("message", function(ev) { alert("In content script, got "+ ev.data);',
+  contentScript: 'window.addEventListener("message",
+    function(ev) {
+      alert("In content script, got "+ ev.data);',
 });
-</pre></p>
-      
-    <a href="https://builder.addons.mozilla.org/addon/1017544/revision/48/">Link</a>
+</pre></p>      
+  <a href="https://builder.addons.mozilla.org/addon/1017544/revision/50/">Link</a>
 </article>
 
 <article>
   <h1>Exercise 4</h1>
-  <p>Using <a href="https://builder.addons.mozilla.org/addon/1017544/revision/48/">this example</a> as a starting point, implement
-  a button in a page that sends an event through to your add-on code in main.js.</p>
+  <p>Using <a href="https://builder.addons.mozilla.org/addon/1017544/revision/50/">this example</a> as a starting point, implement
+  a button in a page that sends an message through to your add-on code in main.js.</p>
 </article>
 
 <article>
