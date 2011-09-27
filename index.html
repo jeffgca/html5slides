@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Interacting with Web Content using the Mozilla Add-on SDK</title>
+    <title>Getting started with Mozilla's Add-on SDK</title>
 
     <meta charset='utf-8'>
     <script src="slides.js"></script>
-    <base target="_blank" href="http://talks.canuckistani.ca/intro-london-2011/"/>
+    <base target="_blank"/>
   </head>
     <body style='display: none'>
 
@@ -74,8 +74,14 @@
 
 <article>
   <h3>Roadmap</h3>
-  <ul>
-    <li>Top priorities: Mobile, Electrolysis, Localization</li>
+  <ul class="build">
+    <li>Top priorities: 
+      <ul class="build">
+        <li>Mobile</li>
+        <li>Electrolysis</li>
+        <li>Localization</li>
+      </ul>
+    </li>
     <li>Secondary priorities:
       <ul class="build">
         <li>better support for existing add-on developers</li>
@@ -97,8 +103,8 @@
   <p>Basic JS style similar in feel to Node.js</p>
   <ol style="margin: 8px 0">
     <li>require('some-module')</li>
-    <li>create a new instance, passing in an options object</li>
-    <li>do stuff</li>
+    <li>create a new instance; pass in an options object</li>
+    <li>Rock out!</li>
   </ol>
   <p>Example:</p>
 <pre>var someModule = require("some-module");
