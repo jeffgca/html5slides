@@ -106,14 +106,18 @@
     <li>create a new instance; pass in an options object</li>
     <li>Rock out!</li>
   </ol>
-  <p>Example:</p>
-<pre>var someModule = require("some-module");
-var instance = someModule.Class({
-  option: 'my option',
-  onSomeEvent: function(data) {
-    /* handle event brilliantly */
-  },
-});</pre>
+<div class="build">
+  <div>
+    <p>Example:</p>
+    <pre style="margin: 10px 0;">var someModule = require("some-module");
+var instance = someModule.someClass({
+  thisoption: 'my option',
+  thatoption: 42,
+  onSomeEvent: function(data) {},
+});
+instance.someMethod();</pre>
+  </div>
+</div>
 </article>
 
 <article>
@@ -143,17 +147,17 @@ var instance = someModule.Class({
 </article>
 
 <article>
-<h3 id="online-developer-with-builder">Online developer with Builder:</h3>
+<h3 id="online-developer-with-builder">Online development with Builder</h3>
 
 <ul>
   <li>Requirements:
     <ul>
       <li>Firefox</li>
-      <li>Builder 'helper' add-on</li>
       <li>AMO account</li>
+      <li>Builder 'helper' add-on</li>
     </ul>
   </li>
-  <li>Features:
+  <li>Benefits:
     <ul>
       <li>in-browser development</li>
       <li>create and share re-usable modules</li>
