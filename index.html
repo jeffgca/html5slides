@@ -9,15 +9,17 @@
   </head>
     <body style='display: none'>
 
-    <section class='slides layout-regular template-default'>
+<section class='slides layout-regular template-default'>
 <article>
   <h1>Getting started</h1>
   <h3>with Mozilla's Add-on SDK</h3>
-  <p><em>London, UK September 29, 2011</em></p>
+  <p><em>FSOSS, October 29th 2011</em></p>
 </article>
+
 <article>
   <h1>Follow along</h1>
-  <h3><a href="http://talks.canuckistani.ca/intro-london-2011/#2">http://talks.canuckistani.ca/intro-london-2011/#2</a></h3>
+  <h3>This talk is a website!</h3>
+  <h3><a href="http://talks.canuckistani.ca/jetpack-fsoss-2011/#2">http://talks.canuckistani.ca/jetpack-fsoss-2011/#2</a></h3>
 </article>
 
 <article>
@@ -25,13 +27,11 @@
 
 <ul>
   <li>The Jetpack project started in Mozilla Labs in 2009</li>
-  <li>goal is to simplify add-on development:
+  <li>Goals:
     <ul class="build">
-      <li>no XML/XUL</li>
-      <li>high-level JavaScript APIs</li>
-      <li>packaging tool</li>
-      <li>integrated test framework</li>
-      <li>extensibility via modules using CommonJS format.</li>
+      <li>No XUL / XBL.</li>
+      <li>Make add-on development more like web development.</li>
+      <li>Reduce maintenance burden on add-on developers.</li>
     </ul>
   </li>
 </ul>
@@ -41,17 +41,18 @@
 <h3 id="sdk-11">Current release: SDK 1.1</h3>
 <ul>
   <li>1.0 Released June, 2011</li>
-  <li>1.1 released Sept 13, 2011:
+  <li>1.2.1 released Oct 19, 2011:
     <ul>
       <li>stabilization release</li>
-      <li>compatibility fixes for Firefox 7+</li>
+      <li>Adds some functionality to existing APIs</li>
+      <li>No new APIs</li>
     </ul>
   </li>
 </ul>
-<h3>Next release: 1.2 on Oct. 23.</h3>
+<h3>Next release: 1.3 on Nov. 29.</h3>
 <ul>
-  <li><em>Every 6 weeks</em>, 2 weeks before Firefox</li>
-  <li>2 week period to allow for complications and add-on re-packs</li>
+  <li><em>Every 6 weeks</em>, 3 weeks before Firefox</li>
+  <li>3 week period to allow for complications and add-on re-pack testing.</li>
 </ul>
 </article>
 
@@ -60,12 +61,15 @@
 
 <ul>
   <li>Goal is to allow easy implementation of simple add-ons</li>
-  <li>Missing functionality can be implemented via modules</li>
+  <li>Additional functionality can be implemented via modules</li>
   <li>1.x currently contains a useful but incomplete range of modules</li>
   <li>Obvious advantages:
     <ul>
       <li>Always restart-less</li>
-      <li>Test framework</li>
+      <li>high-level JavaScript APIs</li>
+      <li>packaging tool</li>
+      <li>integrated test framework</li>
+      <li>extensibility via modules using CommonJS format.</li>
       <li>Future-proof!</li>
     </ul> 
   </li>
@@ -73,13 +77,17 @@
 </article>
 
 <article>
+  
+</article>
+
+<article>
   <h3>Roadmap</h3>
   <ul class="build">
     <li>Top priorities: 
       <ul class="build">
-        <li>Mobile</li>
-        <li>Electrolysis</li>
         <li>Localization</li>
+        <li>Electrolysis</li>
+        <li>Mobile</li>
       </ul>
     </li>
     <li>Secondary priorities:
@@ -95,28 +103,6 @@
 <div class="build">
 <p>Published roadmap:
 <a href="https://wiki.mozilla.org/Jetpack/Roadmap">https://wiki.mozilla.org/Jetpack/Roadmap</a></p>  
-</div>
-</article>
-
-<article>
-  <h3>Style notes</h3>
-  <p>Basic JS style similar in feel to Node.js</p>
-  <ol style="margin: 8px 0">
-    <li>require('some-module')</li>
-    <li>create a new instance; pass in an options object</li>
-    <li>Rock out!</li>
-  </ol>
-<div class="build">
-  <div>
-    <p>Example:</p>
-    <pre style="margin: 10px 0;">var someModule = require("some-module");
-var instance = someModule.someClass({
-  thisoption: 'my option',
-  thatoption: 42,
-  onSomeEvent: function(data) {},
-});
-instance.someMethod();</pre>
-  </div>
 </div>
 </article>
 
@@ -168,20 +154,69 @@ instance.someMethod();</pre>
 </article>
 
 <article>
-  <h1>Tonight's schedule:</h1>
-  
-  <ul>
-    <li>First Session: 7PM - 7:45PM</li>
-    <li>First Session: 8PM - 8:45PM</li>
-    <li>First Session: 9PM - 9:45PM</li>
-  </ul>
-  
+<h1>Hacking with the SDK</h1>
 </article>
 
 <article>
-  <h1>Checkpoint</h1>
-  <h3>Ok to go?</h3>
+  <h3>Style notes</h3>
+  <p>Basic JS style similar in feel to Node.js</p>
+  <ol style="margin: 8px 0">
+    <li>require('some-module')</li>
+    <li>create a new instance; pass in an options object</li>
+    <li>Rock out!</li>
+  </ol>
+  <div>
+    <p>Example:</p>
+    <pre style="margin: 10px 0;">var someModule = require("some-module");
+var instance = someModule.someClass({
+  thisoption: 'my option',
+  thatoption: 42,
+  onSomeEvent: function(data) {},
+});
+instance.someMethod();</pre>
+  </div>
+</article>
+
+<article>
+
+<h3>Addon-kit Module overview</h3>
+
+<ul>
+  <li>Web content
+    <ul>
+      <li>windows, tabs, pag-mod</li>
+    </ul>
+  </li>
+  <li>User interface &amp; interaction
+    <ul>
+      <li>widget, panel, selection, context-menu</li>
+    </ul>
+  </li>
+  <li>OS integration
+    <ul>
+      <li>notifications, selection, clipboard, hotkeys</li>
+    </ul>
+  </li>
+  <li>Services &amp; data:
+    <ul>
+      <li>request, simple-storage, page-worker</li>
+    </ul>
+  </li>
+  <li>Utilities:
+    <ul>
+      <li>timers, passwords, private-browsing</li>
+    </ul>
+  </li>
+</ul>  
+</article>
+
+<article>
+  <h1>Code or it nvr happened!!</h1>
+</article>
+
+<article>
   
 </article>
+
 </body>
 </html>
