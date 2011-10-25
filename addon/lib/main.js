@@ -50,13 +50,12 @@ var mod = require("page-mod").PageMod({
     /*  make a request */
     worker.port.on('requestify', function(m) {
       shorten(tabs.activeTab.url, function(json) {
-        worker.port.emit('requested', 'shortened URL to: '+json.id);
+        worker.port.emit('alert', 'before: ' + tabs.activeTab.url + "\nafter: "+json.id);
       });
     });
     
     /* pop up the panel */
     worker.port.on('panelify', function(m) {
-      console.log(m);
       xPanel.show();
     });
     
@@ -68,22 +67,15 @@ var mod = require("page-mod").PageMod({
         iconUrl: "http://www.mozilla.org/favicon.ico"
       });
     });
-    
-    //worker.port.on('', function(m) {
-    //  
-    //});
-    
   }
 });
 
 require("widget").Widget({
     id: "mozilla-icon",
-    label: "Open the Websocket Client Page",
+    label: "This is the widget demo!",
     contentURL: "http://www.mozilla.org/favicon.ico",
     panel: xPanel
 });
-
-
 
 var cm = require("context-menu");
 
@@ -91,14 +83,9 @@ cm.Item({
   label: "Context Menu Test",
   context: cm.URLContext('http://aer.local:8080/fsoss*'),
   contentScript: 'self.on("click", function (node, data) {' +
-                 '  self.postMessage(true)' +
+                 '  alert("Click on context menu!"); ' +
                  '});',
   onMessage: function() {
-    console.log("got context click");
+    tabs.activeTab
   }
 });
-
-tabs.open('http://aer.local:8080/fsoss/#15');
-
-
-
