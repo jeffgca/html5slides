@@ -17,7 +17,7 @@ $(document).ready(function() {
         return false;
     });
     
-    self.port.on('requested', function(message) {
+    self.port.on('alert', function(message) {
         alert(message);
     });
 });
