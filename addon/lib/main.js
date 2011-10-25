@@ -49,7 +49,6 @@ var mod = require("page-mod").PageMod({
 
     /*  make a request */
     worker.port.on('requestify', function(m) {
-      
       shorten(tabs.activeTab.url, function(json) {
         worker.port.emit('requested', 'shortened URL to: '+json.id);
       });
