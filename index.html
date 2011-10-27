@@ -229,20 +229,91 @@ instance.someMethod();</pre>
 </article>
 
 <article>
-  <h1>Code or it nvr happened!!</h1>
+  <h1>Code, plz kthxbai</h1>
+  <img src="images/c0d3z.jpg"/> 
 </article>
 
 <article>
-  <h3>Some quick examples</h3>
-  <ul>
-    <li>Context Menu</li>
-    <li>Widget</li>
-    <li>Show a <a id="panelify" href="#14">Panel</a></li>
-    <li>Make a <a id="requestify" href="#14">Web Request</a></li>
-    <li>Show a <a id="notify" href="#14">Notification</a></li>
-  </ul>
-  <br/>
-  <em style="font-size: 65%">Install helper extension from <a href="#">here</a></em>
+  <h3>Context Meu</h3>
+      <pre style="margin: 10px 0;">
+var cm = require("context-menu");
+cm.Item({
+  label: "Context Menu Test",
+  context: cm.URLContext('http://aer.local:8080/fsoss*'),
+  contentScript: 'self.on("click", function (node, data) {' +
+                 '  alert("Click on context menu!"); ' +
+                 '});',
+  onMessage: function() {
+    tabs.activeTab
+  }
+});
+</pre>
+</article>
+
+<article>
+  <h3>Widget</h3>
+  <pre style="margin: 10px 0;">
+
+require("widget").Widget({
+    id: "mozilla-icon",
+    label: "This is the widget demo!",
+    contentURL: "http://www.mozilla.org/favicon.ico",
+    panel: xPanel
+});
+
+var xPanel = require("panel").Panel({
+    height: 340,
+    width: 600,
+    contentURL: 'http://www.reddit.com/r/programming/.compact'
+});
+</pre>
+</article>
+
+<article>
+  <h3>Show a <a id="panelify" href="#14">Panel</a></h3>
+<pre style="margin: 10px 0;">
+var xPanel = require("panel").Panel({
+    height: 340,
+    width: 600,
+    contentURL: 'http://www.reddit.com/r/programming/.compact'
+});
+
+/* pop up the panel */
+worker.port.on('panelify', function(m) {
+  xPanel.show();
+});
+</pre>
+</article>
+
+<article>
+<h3>Make a <a id="requestify" href="#14">Web Request</a></h3>
+<pre style="margin: 10px 0;">
+var shorten = function(url, callback) {    
+    let requestJSON = JSON.stringify({longUrl: url});
+    let googlRequest = require("request").Request({
+        url: 'https://www.googleapis.com/urlshortener/v1/url',
+        content: requestJSON,
+        contentType: 'application/json',
+        onComplete: function(response) {
+          callback(response.json);
+        }
+    });
+    googlRequest.post();
+}
+</pre>
+</article>
+
+<article>
+  <h3>Show a <a id="notify" href="#14">Notification</a></h3>
+<pre style="margin: 10px 0;">
+    worker.port.on('notify', function(m) {
+      require("notifications").notify({
+        title:  "hello from Growl!",
+        text:   "of course, you need Growl installed for this to work...",
+        iconUrl: "http://www.mozilla.org/favicon.ico"
+      });
+    });
+  </pre>
 </article>
 
 <article>
