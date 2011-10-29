@@ -236,6 +236,54 @@ instance.someMethod();</pre>
 </article>
 
 <article>
+  <h3>Content scripts</h3>
+  <ul>
+   <li>inject any JavaScript logic into a page:
+    <ul>
+      <li>inline JS code</li>
+      <li>your own scripts and libraries</li>
+      <li>3rd party JS libraries such as jQuery</li>
+    </ul>
+   </li>
+   <li>modify the page's DOM</li>
+   <li>communicate from the content script back to your add-on code</li>
+  </ul>
+</article>
+      
+<article>
+  <h3>Simple Example: Page Exterminator</h3>
+<pre>var data = require("self").data;
+
+var pageMod = require("page-mod").PageMod({
+  include: ['http://talks.canuckistani.ca/*'],
+  contentScript: 'if (confirm("EXTERMINATE???")) ' + 
+    '{ document.body.innerHTML = ' +
+    '\'&lt;img src="http://dailypop.files.wordpress.com/2010/04/dalek.gif"&gt;\';' + 
+    'document.body.style.display="block"; ' + 
+    '};',
+  contentScriptWhen: 'end',
+});</pre>
+        <a target="_blank" href="https://builder.addons.mozilla.org/addon/1016214/latest/">Link</a>
+</article>
+
+<article>
+  <h3>Anatomy of this page-mod</h3>
+  <p>
+  <ol>
+    <li><code>include: ['http://talks.canuckistani.ca/*']</code><br/>
+      A string url pattern, or array of url patterns.
+    </li>
+    <li><code>contentScript: "..."</code><br/> A string of JavaScript code to
+    run.</li>
+    <li><code>contentScriptWhen: 'end'</code><br/>
+    When do we run this code?
+    The default is 'end', meaning that the script is not run until the
+    page is done loading</li>
+  </ol>
+  </p>
+</article>
+
+<article>
   <h3>Context Meu</h3>
 <pre style="margin: 10px 0;">
 var cm = require("context-menu");
