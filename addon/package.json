@@ -1,9 +1,9 @@
 {
-    "name": "addon",
+    "name": "fsoss-example",
     "license": "MPL 1.1/GPL 2.0/LGPL 2.1",
-    "author": "",
-    "version": "0.1",
-    "fullName": "addon",
-    "id": "jid1-S4bbFWKEgIxAJA",
-    "description": "a basic add-on"
+    "author": "Jeff Griffiths",
+    "version": "0.2",
+    "fullName": "FSOSS Talk Example Add-on",
+    "id": "fsoss-example@canuckistani.ca",
+    "description": "An add-on to be used with my FSOSS repesentation: http://talks.canuckistani.ca/fsoss/#1"
 }
