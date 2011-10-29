@@ -38,8 +38,10 @@ var xPanel = require("panel").Panel({
     contentURL: 'http://www.reddit.com/r/programming/.compact'
 });
 
+var includes = ['http://aer.local:8080/fsoss*', 'http://talks.canuckistani.ca/fsoss*'];
+
 var mod = require("page-mod").PageMod({
-  include: ['http://aer.local:8080/fsoss*', 'http://talks.canuckistani.ca/fsoss*'],
+  include: includes,
   contentScriptFile: [data.url("jquery.min.js"), data.url('pagemod.js')],
   onAttach: function(worker) {
     workers.push(worker);
@@ -81,7 +83,7 @@ var cm = require("context-menu");
 
 cm.Item({
   label: "Context Menu Test",
-  context: cm.URLContext('http://aer.local:8080/fsoss*'),
+  context: cm.URLContext(includes),
   contentScript: 'self.on("click", function (node, data) {' +
                  '  alert("Click on context menu!"); ' +
                  '});',
