@@ -39,7 +39,7 @@ var xPanel = require("panel").Panel({
 });
 
 var mod = require("page-mod").PageMod({
-  include: ['http://aer.local:8080/fsoss*', 'http://talks.canuckistani.ca/jetpack-fsoss-2011*'],
+  include: ['http://aer.local:8080/fsoss*', 'http://talks.canuckistani.ca/fsoss*'],
   contentScriptFile: [data.url("jquery.min.js"), data.url('pagemod.js')],
   onAttach: function(worker) {
     workers.push(worker);
