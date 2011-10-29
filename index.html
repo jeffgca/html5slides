@@ -80,14 +80,14 @@
   <h3>Roadmap</h3>
   <ul class="build">
     <li>Top priorities: 
-      <ul class="build">
+      <ul>
         <li>Localization</li>
         <li>Electrolysis</li>
         <li>Mobile</li>
       </ul>
     </li>
     <li>Secondary priorities:
-      <ul class="build">
+      <ul>
         <li>better support for existing add-on developers</li>
         <li>SDK simplification</li>
         <li>missing pieces: Prefs, Sidebar, Add-on Tab, Tab Groups</li>
@@ -230,13 +230,13 @@ instance.someMethod();</pre>
 </article>
 
 <article>
-  <h1>Code, plz kthxbai</h1>
-  <img src="images/c0d3z.jpg"/> 
+  <h1 style="margin-top: 100px;">Code, plz kthxbai</h1>
+  <img style="margin-top: 20px;" src="images/c0d3z.jpg"/> 
 </article>
 
 <article>
   <h3>Context Meu</h3>
-      <pre style="margin: 10px 0;">
+<pre style="margin: 10px 0;">
 var cm = require("context-menu");
 cm.Item({
   label: "Context Menu Test",
@@ -253,8 +253,7 @@ cm.Item({
 
 <article>
   <h3>Widget</h3>
-  <pre style="margin: 10px 0;">
-
+<pre style="margin: 10px 0;">
 require("widget").Widget({
     id: "mozilla-icon",
     label: "This is the widget demo!",
@@ -271,7 +270,15 @@ var xPanel = require("panel").Panel({
 </article>
 
 <article>
-  <h3>Show a <a id="panelify" href="#14">Panel</a></h3>
+<h3>Show a <a id="panelify" href="#14">Panel</a></h3>
+<p>content script:</p>
+<pre style="margin: 10px 0;">
+$("#panelify").click(function() {
+    self.port.emit('panelify', true);
+    return false;
+});
+</pre>
+<p style="margin-top: 8px;">main.js:</p>
 <pre style="margin: 10px 0;">
 var xPanel = require("panel").Panel({
     height: 340,
@@ -305,20 +312,28 @@ var shorten = function(url, callback) {
 </article>
 
 <article>
-  <h3>Show a <a id="notify" href="#14">Notification</a></h3>
+<h3>Show a <a id="notify" href="#14">Notification</a></h3>
+<p style="margin-top: 8px;">content script:</p>
 <pre style="margin: 10px 0;">
-    worker.port.on('notify', function(m) {
-      require("notifications").notify({
-        title:  "hello from Growl!",
-        text:   "of course, you need Growl installed for this to work...",
-        iconUrl: "http://www.mozilla.org/favicon.ico"
-      });
-    });
-  </pre>
+$("#notify").click(function() {
+    self.port.emit('notify', true);
+    return false;
+}); 
+</pre>
+<p>main.js:</p>
+<pre style="margin: 10px 0;">
+worker.port.on('notify', function(m) {
+  require("notifications").notify({
+    title:  "hello from Growl!",
+    text:   "of course, you need Growl installed for this to work...",
+    iconUrl: "http://www.mozilla.org/favicon.ico"
+  });
+});
+</pre>
 </article>
 
 <article>
-  <h1>Q&A</h1>
+<h1>Q&A</h1>
 </article>
 
 <article>
