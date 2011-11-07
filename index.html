@@ -24,6 +24,60 @@
 </article>
 
 <article>
+  <h3>Current State</h3>
+</article>
+
+<article>
+<h3>Jetpack L10N '<em>Hello World</em>'</h3>
+
+<pre style="margin: 10px 0;">
+require("tabs").tabs.on('activate', function(tab) {
+  tab.attach({
+    contentScript: 'alert("' + _("Hello World!") + '")',
+  });
+});
+</pre>
+</article>
+
+<article>
+  <h3>Ids or strings?</h3>
+  <ul>
+    <li>Small add-on, few strings, just translate the strings.</li>
+    <li>Slightly larger extension? Implement ids and a default translations file.</li>
+  </ul>
+</article>
+
+<article>
+<h1>For localizers</h1>
+  
+<p>Localizations stored in the locale directory:</p>
+<pre style="margin: 10px 0;">
+data/
+doc/
+    main.md
+lib/
+    main.js
+locale/
+    en-GB.json
+    en-US.json
+    fr-FR.json
+test/
+    test-main.js
+package.json
+README.md
+</pre>
+</article>
+
+<article>
+  <h3></h3>
+</article>
+
+<article>
+  <h3>Future plans</h3>
+
+
+  
+  
 </article>
 
 <article>
