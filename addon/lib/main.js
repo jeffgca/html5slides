@@ -3,10 +3,18 @@ const data = require("self").data;
 const _ = require("l10n").get;
 const tabs = require("tabs");
 
-tabs.on('ready', function(tab) {
-  var worker = tab.attach({
-    contentScriptFile: data.url('alertbot.js')
-  });
-  
-  console.log(_("str_hello_world"));
+require("widget").Widget({
+  id: 'l10n-widget',
+  label: _("str_hello_world"),
+  contentURL: "http://www.mozilla.org/favicon.ico",
+  onClick: function() {
+    
+    if (typeof(tabs.activeTab._worker) == "undefined") {
+      let worker = tabs.activeTab.attach({
+        contentScriptFile: data.url('alertbot.js')
+      });
+      worker.port.emit('alert', _("str_hello_world"));
+    }
+  }
 });
+
