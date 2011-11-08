@@ -1,0 +1,3 @@
+#!/bin/bash
+SEL_LANG="$1"
+/Applications/Firefox_$SEL_LANG.app/COntents/MacOS/firefox -P $SEL_LANG &

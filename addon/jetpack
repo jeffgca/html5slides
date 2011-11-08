@@ -1,0 +1,41 @@
+#!/bin/bash
+
+PY=`which python`
+CFX="$HOME/code/jetpack/forks/alexp/bin/cfx"
+#CFX="$HOME/code/jetpack/testing/addon-sdk-1.2b1/bin/cfx"
+SEL_LANG="$1"
+FF="/Applications/Firefox_$SEL_LANG.app"
+
+if [ ! -e "$FF" ]; then
+    echo "ALARM!! doesn't exist: $FF"
+    exit
+fi
+
+PROF_ROOT="$HOME/Library/Application\ Support/Firefox/Profiles/"
+
+# 8mk5aumk.Nightly
+# 8wrr3ba4.Esperanto
+# 9ekeccpg.French
+# OnePassword.sqlite
+# b271f03z.Aurora
+# b271f03z.Firebug
+# b49h24eg.default
+# ct0t7noo.Stable
+# s3tm6iy4.Aurora
+# z3uk19qe.Deutsch
+
+
+if [ "$SEL_LANG" = "Deutsch" ]; then
+    P="$PROF_ROOT/z3uk19qe.Deutsch"
+elif [ "$SEL_LANG" = "French" ]; then
+    P="$PROF_ROOT/9ekeccpg.French"
+elif [ "$SEL_LANG" = "Esperanto" ]; then
+    P="$PROF_ROOT/8wrr3ba4.Esperanto"
+else
+    P="$PROF_ROOT/b271f03z.Firebug"
+fi
+
+
+
+$PY $CFX --binary=$FF --profiledir="$P" run
+

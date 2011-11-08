@@ -1,0 +1,9 @@
+{
+  "name": "jetpack_l10n_demo",
+  "fullName": "Jetpack Localization Demo",
+  "description": "an add-on used to demonstrate localization features in the Add-on SDK.",
+  "author": "Jeff Griffiths ( jgriffiths@mozilla.com )",
+  "id": "jetpack-l10n@canuckistani.ca",
+  "license": "MPL 1.1/GPL 2.0/LGPL 2.1",
+  "version": "0.1"
+}
