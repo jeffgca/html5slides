@@ -24,19 +24,48 @@
 </article>
 
 <article>
-<h3>Jetpack L10N '<em>Hello World</em>'</h3>
+<h3>For Developers</h3>
 
-<pre style="margin: 10px 0;">
+<pre style="margin: 26px 0;">
+const _ = require("l10n").get;
 require("tabs").tabs.on('activate', function(tab) {
   tab.attach({
     contentScript: 'alert("' + _("Hello World!") + '")',
   });
 });
-</pre>
+</pre><br/>
+We use the Gnu 'gettext' convention:
+<code>_("text to translate")</code>
+<ul>
+  <li>widely used convention in Open Source software</li>
+  <li>simple syntax</li>
+</ul>
 </article>
 
 <article>
-  <h3>Ids or strings?</h3>
+<h3 style="margin-bottom: 16px;">Example using Ids</h3>
+JS Code:
+<pre style="margin: 10px 0;">
+const _ = require("l10n").get;
+require("tabs").tabs.on('activate', function(tab) {
+  tab.attach({
+    contentScript: 'alert("' + _("hello_world_id") + '")',
+  });
+});
+console.log(_("hello_world_id"));
+</pre>
+
+Default Translation ( en-US.json ):
+
+<pre style="margin: 10px 0;" class="prettyprint lang-js">{
+    "keys": {
+        "str_hello_world": "Hello world!"        
+    }
+}</pre>
+</article>
+
+<article>
+  <h1>Ids or strings?</h1>
   <ul>
     <li>Small add-on, few strings, just translate the strings.</li>
     <li>Slightly larger extension? Implement ids and a default translations file.</li>
@@ -44,10 +73,10 @@ require("tabs").tabs.on('activate', function(tab) {
 </article>
 
 <article>
-<h3>For localizers</h3>
+<h3>File layout</h3>
   
 <p>Localizations stored in the locale directory:</p>
-<pre style="margin: 10px 0;">
+<pre style="margin: 10px 0;" class="prettyprint lang-bsh">
 data/
 doc/
     main.md
@@ -57,6 +86,7 @@ locale/
     en-GB.json
     en-US.json
     fr-FR.json
+    // ...etc
 test/
     test-main.js
 package.json
@@ -73,7 +103,6 @@ README.md
         "addon_running": "me traduire!",
         "str_hello_world": "Bonjour le monde!"        
     }
-
 }
 </pre>
 </article>
@@ -85,13 +114,15 @@ README.md
 
 <article>
   <h3>Future plans</h3>
-  
   <ul>
     <li>Land initial support soon.</li>
     <li>Implement translation of HTML files ( Panel UI, etc. )</li>
-    <li>Work to get Commonpool working so people can easily translate add-ons.</li>
+    <li>Get Commonpool working so people can easily translate add-ons.</li>
   </ul>   
-  
+</article>
+
+<article>
+<h1>Discussion!</h1>
 </article>
 
 <article>
@@ -104,10 +135,5 @@ README.md
     <li><a href="http://twitter.com/#!/mozillajetpack">@mozillajetpack</a></li>
   </ul>
 </article>
-
-<article>
-<h1>Q&A</h1>
-</article>
-
 </body>
 </html>
