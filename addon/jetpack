@@ -6,11 +6,6 @@ CFX="$HOME/code/jetpack/forks/alexp/bin/cfx"
 SEL_LANG="$1"
 FF="/Applications/Firefox_$SEL_LANG.app"
 
-if [ ! -e "$FF" ]; then
-    echo "ALARM!! doesn't exist: $FF"
-    exit
-fi
-
 PROF_ROOT="$HOME/Library/Application\ Support/Firefox/Profiles/"
 
 # 8mk5aumk.Nightly
@@ -24,7 +19,6 @@ PROF_ROOT="$HOME/Library/Application\ Support/Firefox/Profiles/"
 # s3tm6iy4.Aurora
 # z3uk19qe.Deutsch
 
-
 if [ "$SEL_LANG" = "Deutsch" ]; then
     P="$PROF_ROOT/z3uk19qe.Deutsch"
 elif [ "$SEL_LANG" = "French" ]; then
@@ -32,10 +26,15 @@ elif [ "$SEL_LANG" = "French" ]; then
 elif [ "$SEL_LANG" = "Esperanto" ]; then
     P="$PROF_ROOT/8wrr3ba4.Esperanto"
 else
+echo "got here"
+echo "$@"
+    FF="/Applications/Firefox.app"
     P="$PROF_ROOT/b271f03z.Firebug"
 fi
 
-
+if [ ! -e "$FF" ]; then
+    echo "ALARM!! doesn't exist: $FF"
+    exit
+fi
 
 $PY $CFX --binary=$FF --profiledir="$P" run
-
