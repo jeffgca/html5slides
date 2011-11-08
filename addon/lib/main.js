@@ -13,8 +13,9 @@ require("widget").Widget({
       let worker = tabs.activeTab.attach({
         contentScriptFile: data.url('alertbot.js')
       });
-      worker.port.emit('alert', _("str_hello_world"));
+      tabs.activeTab._worker = worker;
     }
+    tabs.activeTab._worker.port.emit('alert', _("str_hello_world"));
   }
 });
 
