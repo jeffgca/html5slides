@@ -1,7 +1,5 @@
 {
-    "keys": {
         "moz_website": "Mozilla Website.",
-        "addon_running": "The add-on is now running.",
-        "str_hello_world": "Hello world!"    
-    }    
+        "addon_running": "Blimey! This add-on is now running.",
+        "str_hello_world": "'Allo guv'nah!"
 }

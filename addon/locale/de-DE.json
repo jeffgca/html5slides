@@ -1,7 +1,5 @@
 {
-    "keys": {
-        "moz_website": "Mozilla Website",
-        "addon_running": "übersetzen mich",
-        "str_hello_world": "übersetzen mich" 
-    }
+    "moz_website": "Mozilla Website",
+    "addon_running": "übersetzen mich",
+    "str_hello_world": "übersetzen mich" 
 }
