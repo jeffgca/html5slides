@@ -24,8 +24,17 @@
 </article>
 
 <article>
-<h3>For Developers</h3>
+<h1 style="margin-bottom: 26px;">For Developers</h1>
 
+We use the Gnu 'gettext' convention:&nbsp;&nbsp;<code>_("text to translate")</code>
+<ul>
+  <li>widely used convention in Open Source software</li>
+  <li>simple syntax</li>
+</ul>
+</article>
+
+<article>
+<h3>Example using strings:</h3>
 <pre style="margin: 26px 0;">
 const _ = require("l10n").get;
 require("tabs").tabs.on('activate', function(tab) {
@@ -34,12 +43,15 @@ require("tabs").tabs.on('activate', function(tab) {
   });
 });
 </pre><br/>
-We use the Gnu 'gettext' convention:
-<code>_("text to translate")</code>
-<ul>
-  <li>widely used convention in Open Source software</li>
-  <li>simple syntax</li>
-</ul>
+
+French Translation ( fr-FR.json ):
+
+<pre style="margin: 10px 0;" class="prettyprint lang-js">
+{
+  "Hello world!": "Bonjour le monde!"
+}</pre>
+</article>
+
 </article>
 
 <article>
@@ -58,16 +70,16 @@ console.log(_("hello_world_id"));
 Default Translation ( en-US.json ):
 
 <pre style="margin: 10px 0;" class="prettyprint lang-js">{
-    "keys": {
-        "str_hello_world": "Hello world!"        
-    }
+{
+    "str_hello_world": "Hello world!"        
+}
 }</pre>
 </article>
 
 <article>
   <h1>Ids or strings?</h1>
   <ul>
-    <li>Small add-on, few strings, just translate the strings.</li>
+    <li>Small add-on, few strings, just translate the strings!</li>
     <li>Slightly larger extension? Implement ids and a default translations file.</li>
   </ul>
 </article>
@@ -83,26 +95,23 @@ doc/
 lib/
     main.js
 locale/
-    en-GB.json
+    de-DE.json
     en-US.json
     fr-FR.json
     // ...etc
 test/
     test-main.js
 package.json
-README.md
-</pre>
+README.md</pre>
 </article>
 
 <article>
 <h3>JSON file format</h3>
 <pre style="margin: 10px 0;">
 {
-    "keys": {
-        "moz_website": "me traduire!",
-        "addon_running": "me traduire!",
-        "str_hello_world": "Bonjour le monde!"        
-    }
+  "moz_website": "me traduire!",
+  "addon_running": "me traduire!",
+  "str_hello_world": "Bonjour le monde!"
 }
 </pre>
 </article>
