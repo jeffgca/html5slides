@@ -75,13 +75,13 @@ console.log(_("hello_world_id"));
 }</pre>
 </article>
 
-<article>
+<!--<article>
   <h1>Ids or strings?</h1>
   <ul>
     <li>Small add-on, few strings, just translate the strings!</li>
     <li>Slightly larger extension? Implement ids and a default translations file.</li>
   </ul>
-</article>
+</article>-->
 
 <article>
 <h3>File layout</h3>
@@ -106,6 +106,16 @@ README.md</pre>
 
 <article>
 <h3>JSON file format</h3>
+<p>Strings:</p>
+<pre style="margin: 10px 0;">
+{
+  "Mozilla Website": "me traduire!",
+  "The add-on is running": "me traduire!",
+  "Hello world!": "Bonjour le monde!"
+}
+</pre>
+
+<p>Ids:</p>
 <pre style="margin: 10px 0;">
 {
   "moz_website": "me traduire!",
